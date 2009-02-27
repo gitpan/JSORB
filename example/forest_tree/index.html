@@ -1,0 +1,68 @@
+<html>
+<head>
+<script language="javascript" src="../js/jquery-1.2.6.js"></script>
+<script language="javascript" src="../js/json2.js"></script>
+<script language="javascript" src="../../lib/JS/JSORB.js"></script>
+<script language="javascript">
+
+function draw_node (c) {
+    return '<li id="node_'
+         + c.uid
+         + '"><a href="javascript:load_subtree('
+         + c.uid
+         + ')">'
+         + c.node
+         + '</a><ul id="children_'
+         + c.uid
+         + '"></ul></li>';
+}
+
+$(document).ready(function () {
+   get_root_tree(function (t) {
+       var out = '';
+       $.each(t.children, function (i, c) { out += draw_node(c) });
+       $('#tree').html(out);
+   });
+})
+
+function load_subtree (uid, node) {
+    if ($('#children_' + uid).html()) {
+        $('#children_' + uid).toggle();
+    }
+    else {
+        get_tree_at(uid, function (t) {
+            var out = '';
+            $.each(t.children, function (i, c) { out += draw_node(c) });
+            $('#children_' + uid).html(out);
+        });
+    }
+}
+
+var c = new JSORB.Client ('http://localhost:9999/');
+
+function get_root_tree (callback) {
+    c.call(
+        { method: "/forest/tree/get_root_tree" },
+        callback
+    );
+}
+
+function get_tree_at (uid, callback) {
+    c.call(
+        {
+            method : "/forest/tree/get_tree_at",
+            params : [ uid ]
+        },
+        callback
+    );
+}
+
+</script>
+</head>
+<body>
+<h1>JSORB Tree Test</h1>
+<hr/>
+<ul id="tree">
+</ul>
+</body>
+</html>

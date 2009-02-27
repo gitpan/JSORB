@@ -1,0 +1,33 @@
+---
+abstract: 'Javascript Object Request Broker'
+author:
+  - 'Stevan Little <stevan.little@iinteractive.com>'
+build_requires:
+  JS::Test::Base: 0
+  Test::More: 0
+  Test::WWW::Mechanize: 0
+distribution_type: module
+generated_by: 'Module::Install version 0.75'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
+name: JSORB
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  HTTP::Engine: 0
+  JS: 0
+  JS::JSON: 0
+  JS::jQuery: 0
+  JSON::RPC::Common: 0
+  Moose: 0
+  MooseX::AttributeHelpers: 0
+  MooseX::Traits: 0
+  MooseX::Types::Path::Class: 0
+  Path::Router: 0
+  Set::Object: 0
+  Text::SimpleTable: 0
+version: 0.01
