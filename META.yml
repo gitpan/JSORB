@@ -7,7 +7,7 @@ build_requires:
   Test::More: 0
   Test::WWW::Mechanize: 0
 distribution_type: module
-generated_by: 'Module::Install version 0.75'
+generated_by: 'Module::Install version 0.71'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -22,12 +22,12 @@ requires:
   JS: 0
   JS::JSON: 0
   JS::jQuery: 0
-  JSON::RPC::Common: 0
+  JSON::RPC::Common: 0.05
   Moose: 0
   MooseX::AttributeHelpers: 0
-  MooseX::Traits: 0
+  MooseX::Traits: 0.06
   MooseX::Types::Path::Class: 0
   Path::Router: 0
   Set::Object: 0
   Text::SimpleTable: 0
-version: 0.01
+version: 0.02

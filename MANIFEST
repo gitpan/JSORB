@@ -6,6 +6,7 @@ example/js/json2.js
 example/kiokudb_navigator/css/style.css
 example/kiokudb_navigator/index.html
 example/kiokudb_navigator/jsorb_server.pl
+example/README.examples
 example/simple/index.html
 example/simple/jsorb_server.pl
 inc/Module/Install.pm
@@ -69,19 +70,9 @@ t/202_simple_server_w_invocant_factory.t
 t/300_catalyst_action.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Foo.pm
-tests/001_basic.t.html
-tests/010_request.t.html
-tests/020_response.t.html
 tests/config.yaml
-tests/index.html
-tests/lib/Test/Base.js
-tests/lib/Test/Builder.js
-tests/lib/Test/Harness.js
-tests/lib/Test/Harness/Browser.js
 tests/lib/Test/JSORB.js
 tests/Makefile
 tests/t/001_basic.t.js
 tests/t/010_request.t.js
 tests/t/020_response.t.js
-tests/template/index.html
-tests/template/test.html
