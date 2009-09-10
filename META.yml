@@ -18,7 +18,9 @@ no_index:
     - inc
     - t
 requires:
-  HTTP::Engine: 0
+  HTTP::Request: 0
+  HTTP::Response: 0
+  HTTP::Server::Simple: 0.34
   JS: 0
   JS::JSON: 0
   JS::jQuery: 0
@@ -30,4 +32,5 @@ requires:
   Path::Router: 0
   Set::Object: 0
   Text::SimpleTable: 0
-version: 0.02
+  Try::Tiny: 0
+version: 0.03

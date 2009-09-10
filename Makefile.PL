@@ -7,6 +7,7 @@ all_from 'lib/JSORB.pm';
 requires 'Moose'                      => 0;
 requires 'MooseX::AttributeHelpers'   => 0;
 requires 'MooseX::Traits'             => '0.06';
+requires 'Try::Tiny'                  => 0;
 
 requires 'Set::Object'                => 0;
 requires 'JSON::RPC::Common'          => '0.05';
@@ -18,7 +19,9 @@ requires 'JS::JSON'                   => 0;
 requires 'JS::jQuery'                 => 0;
 
 # for JSORB::Server::Simple
-requires 'HTTP::Engine'               => 0;
+requires 'HTTP::Server::Simple'       => 0.34;
+requires 'HTTP::Request'              => 0;
+requires 'HTTP::Response'             => 0;
 
 # for JSORB::Server::Traits::WithStaticFiles
 requires 'MooseX::Types::Path::Class' => 0;

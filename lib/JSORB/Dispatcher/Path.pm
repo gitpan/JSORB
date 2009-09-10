@@ -1,9 +1,10 @@
 package JSORB::Dispatcher::Path;
 use Moose;
 
+use Try::Tiny;
 use Path::Router;
 
-our $VERSION   = '0.02';
+our $VERSION   = '0.03';
 our $AUTHORITY = 'cpan:STEVAN';
 
 with 'MooseX::Traits';
@@ -40,15 +41,17 @@ sub handler {
         $call, "Could not find method " . $call->method . " in " . $self->namespace->name
     ) unless defined $procedure;
 
-    my ($res, $e) = do {
-        local $@;
-        my $r = eval { $self->call_procedure($procedure, $call, @args) };
-        ($r, $@)
+    try {
+        $call->return_result(
+            $self->call_procedure(
+                $procedure,
+                $call,
+                @args
+            )
+        );
+    } catch {
+        $self->throw_error($call, $_);
     };
-    if ($e) {
-        return $self->throw_error($call, $e);
-    }
-    return $call->return_result($res);
 }
 
 sub get_procedure_from_call {
