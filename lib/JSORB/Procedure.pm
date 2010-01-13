@@ -3,7 +3,7 @@ use Moose;
 
 use JSORB::Types;
 
-our $VERSION   = '0.03';
+our $VERSION   = '0.04';
 our $AUTHORITY = 'cpan:STEVAN';
 
 extends 'JSORB::Core::Element';
@@ -90,8 +90,11 @@ sub check_parameter_spec {
                      . ")";
 
         ($params[$i]->check($args[$i]))
-            || confess "Parameter at position $i ($args[$i]) did not pass the spec, "
-                     . "we expected " . $params[$i]->name;
+            || confess "Parameter at position $i ("
+                     . (defined $args[$i] ? $args[$i] : 'undef')
+                     . ") did not pass the spec, "
+                     . "we expected "
+                     . $params[$i]->name;
 
         $arg_count = $i;
     }
@@ -118,7 +121,7 @@ sub check_return_value_spec {
     }
 
     ($rv->check($result[0]))
-        || confess "Return value $result[0] did not pass the return value spec, "
+        || confess "Return value " . (defined $result[0] ? $result[0] : 'undef') . " did not pass the return value spec, "
                  . "we expected " . $rv->name;
 }
 
@@ -132,7 +135,7 @@ __END__
 
 =head1 NAME
 
-JSORB::Procedure - A basic RPC procedure 
+JSORB::Procedure - A basic RPC procedure
 
 =head1 BUGS
 
@@ -146,7 +149,7 @@ Stevan Little E<lt>stevan.little@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2009 Infinity Interactive, Inc.
+Copyright 2008-2010 Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

@@ -7,11 +7,20 @@ all_from 'lib/JSORB.pm';
 requires 'Moose'                      => 0;
 requires 'MooseX::AttributeHelpers'   => 0;
 requires 'MooseX::Traits'             => '0.06';
-requires 'Try::Tiny'                  => 0;
+requires 'MooseX::Params::Validate'   => 0;
 
+requires 'Try::Tiny'                  => 0;
 requires 'Set::Object'                => 0;
 requires 'JSON::RPC::Common'          => '0.05';
 requires 'Path::Router'               => 0;
+
+# for the JSORB::Client::Compiler
+requires 'Buffer::Transactional'      => 0;
+requires 'MooseX::Types::Path::Class' => 0;
+
+# for the JSORB.pm client library
+requires 'Class::Inspector'           => 0;
+requires 'File::Copy'                 => 0;
 
 # for the JSORB.js client library
 requires 'JS'                         => 0;
@@ -24,7 +33,7 @@ requires 'HTTP::Request'              => 0;
 requires 'HTTP::Response'             => 0;
 
 # for JSORB::Server::Traits::WithStaticFiles
-requires 'MooseX::Types::Path::Class' => 0;
+#requires 'MooseX::Types::Path::Class' => 0;
 
 # for JSORB::Server::Traits::WithDebug
 requires 'Text::SimpleTable'          => 0;

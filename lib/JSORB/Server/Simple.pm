@@ -8,7 +8,7 @@ use HTTP::Response;
 use Try::Tiny;
 use JSON::RPC::Common::Marshal::HTTP;
 
-our $VERSION   = '0.03';
+our $VERSION   = '0.04';
 our $AUTHORITY = 'cpan:STEVAN';
 
 with 'MooseX::Traits';
@@ -111,17 +111,23 @@ sub build_handler {
 # engine so that it can be run
 # after a fork() such as in our
 # tests. Otherwise the laziness
-# messes things up.
+# messes things up. However it needs
+# to be lazy in order to use the
+# other attributes when creating
+# itself.
 # -SL
 sub BUILD { (shift)->server_engine }
 
-sub run {
+sub _setup_server {
     my $self   = shift;
     my $server = $self->server_engine->name->new;
     $server->port( $self->port );
     $server->host( $self->host );
-    $server->run;
+    $server;
 }
+
+sub run        { (shift)->_setup_server->run        }
+sub background { (shift)->_setup_server->background }
 
 __PACKAGE__->meta->make_immutable;
 
@@ -137,9 +143,10 @@ JSORB::Server::Simple - A simple HTTP server for JSORB
 
 =head1 DESCRIPTION
 
-This is just a simple JSORB server built on top of L<HTTP::Engine>.
-This is probably best used for development and small standalone apps
-but probably not in heavy production use (hence the ::Simple).
+This is just a simple JSORB server built on top of
+L<HTTP::Server::Simple>. This is probably best used for
+development and small standalone apps but probably not in
+heavy production use (hence the ::Simple).
 
 =head1 BUGS
 
@@ -153,7 +160,7 @@ Stevan Little E<lt>stevan.little@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2009 Infinity Interactive, Inc.
+Copyright 2008-2010 Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
